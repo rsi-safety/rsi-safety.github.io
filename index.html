@@ -11,11 +11,11 @@
     * { box-sizing: border-box; }
     body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); padding: 24px 16px 48px;
            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-    .site-header { max-width: 960px; margin: 0 auto 48px; text-align: left; }
+    .site-header { max-width: 840px; margin: 0 auto 48px; text-align: left; }
     .brand { color: var(--fg); font-size: 1.1rem; font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
-    main { max-width: 960px; margin: 0 auto; }
-    .hero { max-width: 720px; margin: 0 auto 64px; text-align: center; }
-    h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+    main { max-width: 840px; margin: 0 auto; }
+    .hero { max-width: 840px; margin: 0 auto 64px; text-align: center; }
+    h1 { font-size: clamp(1.75rem, 4.1vw, 2.5rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
     .subtitle { font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 500; margin: 0 0 24px; color: var(--muted); line-height: 1.4; }
     .authors { font-size: 1.05rem; line-height: 1.9; margin: 0 0 16px; }
     .affil { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin: 0 0 8px; }
@@ -28,14 +28,12 @@
     a.button:hover { background: var(--accent); color: var(--bg); }
     a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
     .result { margin: 0 0 56px; }
-    .copy { max-width: 720px; margin: 0 auto; }
+    .copy { max-width: 840px; margin: 0 auto; }
     .copy h2 { font-size: 1.4rem; line-height: 1.35; margin: 0 0 16px; letter-spacing: -0.015em; }
     .copy p { line-height: 1.75; margin: 0 0 22px; }
     figure { margin: 24px 0 0; }
-    figure a { display: block; }
     figure img { display: block; width: 100%; height: auto; background: #fff; }
-    figcaption { max-width: 720px; margin: 14px auto 0; font-size: .9rem; line-height: 1.65; color: var(--muted); }
-    .resolution { display: inline !important; white-space: nowrap; }
+    figcaption { max-width: 840px; margin: 14px auto 0; font-size: .9rem; line-height: 1.65; color: var(--muted); }
     .table-scroll { overflow-x: auto; margin-bottom: 20px; }
     table { width: 100%; border-collapse: collapse; font-size: .95rem; line-height: 1.6; }
     th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -53,12 +51,9 @@
       <h2 class="subtitle">Why Failures Persist and How Agents Recover</h2>
       <p class="authors">Yunbei Zhang<sup>1,†</sup>, Janet Wang<sup>1,†</sup>, Saiyue Lyu<sup>2</sup>, Yingqiang Ge<sup>3</sup>,<br>
         Kaiqu Liang<sup>4</sup>, Zijian Jin<sup>5</sup>, Chandan K. Reddy<sup>6</sup>, Jihun Hamm<sup>1</sup></p>
-      <p class="affil"><sup>1</sup>Tulane University &nbsp; <sup>2</sup>University of British Columbia<br>
-        <sup>3</sup>Rutgers University &nbsp; <sup>4</sup>Princeton University<br>
-        <sup>5</sup>New York University &nbsp; <sup>6</sup>Virginia Tech</p>
+      <p class="affil"><sup>1</sup>Tulane &nbsp; <sup>2</sup>UBC &nbsp; <sup>3</sup>Rutgers &nbsp; <sup>4</sup>Princeton &nbsp; <sup>5</sup>NYU &nbsp; <sup>6</sup>Virginia Tech</p>
       <p class="note">† Equal contribution</p>
       <nav class="links" aria-label="Paper resources">
-        <a class="button" href="https://arxiv.org/pdf/2610.01073">Paper</a>
         <a class="button" href="https://arxiv.org/abs/2610.01073">arXiv</a>
         <a class="button" href="https://github.com/rsi-safety/RSI-Safety">GitHub</a>
       </nav>
@@ -69,8 +64,8 @@
         <p>Recursive self-improvement lets agents carry useful changes across generations. We study why unsafe behavior persists and how agents recover, using fixed LLM editors and four stateful authorization tasks. Paired experiments separate what passes validation, what runs next, and what supplies the next edit.</p>
       </div>
       <figure>
-        <a href="assets/figures/overview.png" aria-label="Open full-resolution figure 1"><img src="assets/figures/overview.png" width="7680" height="4438" alt="Failure entry, persistence through selection, and the separate roles of deployment validation and editing source." loading="eager" decoding="async"></a>
-        <figcaption>Figure 1. Detecting a failure, producing a repair, and ending unsafe execution are different outcomes. Red denotes the current program, blue the founder, and green a currently passing fallback. <a class="resolution" href="assets/figures/overview.png">8K PNG</a></figcaption>
+        <img src="assets/figures/overview.png" width="3840" height="2219" alt="Failure entry, persistence through selection, and the separate roles of deployment validation and editing source." loading="eager" decoding="async">
+        <figcaption>Figure 1. Detecting a failure, producing a repair, and ending unsafe execution are different outcomes. Red denotes the current program, blue the founder, and green a currently passing fallback.</figcaption>
       </figure>
     </section>
     <section class="result" aria-labelledby="authorization-and-selection">
@@ -79,8 +74,8 @@
         <p>Historical readout retains the same unsafe programs in <strong>22 of 48 framework histories through iteration 100</strong>, despite a correct alternative in every affected archive. Current readout restores full correctness on the original suite. Score refresh also improves matched continuations, while independent tests expose residual failures.</p>
       </div>
       <figure>
-        <a href="assets/figures/authorization-and-selection.png" aria-label="Open full-resolution figure 2"><img src="assets/figures/authorization-and-selection.png" width="7680" height="4461" alt="Authorization-change trajectories and framework readouts under historical evaluations, current checks, and score refresh." loading="lazy" decoding="async"></a>
-        <figcaption>Figure 2. Top: 72 authorization-change histories. Bottom: 48 framework histories. Readouts select from the same archives. Score refresh continues to iteration 60, while readouts continue to 100. <a class="resolution" href="assets/figures/authorization-and-selection.png">8K PNG</a></figcaption>
+        <img src="assets/figures/authorization-and-selection.png" width="3840" height="2231" alt="Authorization-change trajectories and framework readouts under historical evaluations, current checks, and score refresh." loading="lazy" decoding="async">
+        <figcaption>Figure 2. Top: 72 authorization-change histories. Bottom: 48 framework histories. Readouts select from the same archives. Score refresh continues to iteration 60, while readouts continue to 100.</figcaption>
       </figure>
     </section>
     <section class="result" aria-labelledby="retention-after-rejection">
@@ -89,8 +84,8 @@
         <p>When the incumbent and both proposals fail the same tests, <strong>keep retains the failed program</strong>, while founder fallback restores safety. Holding all proposals and outcomes fixed isolates the retention rule. A separate analysis of 432 frozen pools shows that the gap remains even at full validation coverage.</p>
       </div>
       <figure>
-        <a href="assets/figures/retention-after-rejection.png" aria-label="Open full-resolution figure 3"><img src="assets/figures/retention-after-rejection.png" width="7680" height="2184" alt="Frozen candidate pools and identical rejected proposals reveal the difference between keep and founder fallback." loading="lazy" decoding="async"></a>
-        <figcaption>Figure 3. Each editor processes 42 failed roots. The table shows only all-rejected cases. The authorization contract is unchanged, and unknown outcomes do not count as safe. <a class="resolution" href="assets/figures/retention-after-rejection.png">8K PNG</a></figcaption>
+        <img src="assets/figures/retention-after-rejection.png" width="3840" height="1092" alt="Frozen candidate pools and identical rejected proposals reveal the difference between keep and founder fallback." loading="lazy" decoding="async">
+        <figcaption>Figure 3. Each editor processes 42 failed roots. The table shows only all-rejected cases. The authorization contract is unchanged, and unknown outcomes do not count as safe.</figcaption>
       </figure>
     </section>
     <section class="result" aria-labelledby="recovery">
@@ -99,8 +94,8 @@
         <p>From the <strong>same 42 failed programs</strong>, editing the current program restores safety in <strong>66.7%</strong> of roots after six generations, compared with <strong>97.6%</strong> when editing the founder. The advantage varies across editors. Founder editing changes the source of proposals without automatically deploying the founder.</p>
       </div>
       <figure>
-        <a href="assets/figures/recovery.png" aria-label="Open full-resolution figure 4"><img src="assets/figures/recovery.png" width="7680" height="4329" alt="Recovery by original editor and feedback condition, with GPT and Sonnet trajectories from the same failed roots." loading="lazy" decoding="async"></a>
-        <figcaption>Figure 4. Original editors: Devstral 2, GLM 4.7 Flash, and Qwen3 Coder. GPT and Sonnet each process all 42 roots. Safety restored describes the current selection, not safety throughout its history. <a class="resolution" href="assets/figures/recovery.png">8K PNG</a></figcaption>
+        <img src="assets/figures/recovery.png" width="3840" height="2165" alt="Recovery by original editor and feedback condition, with GPT and Sonnet trajectories from the same failed roots." loading="lazy" decoding="async">
+        <figcaption>Figure 4. Original editors: Devstral 2, GLM 4.7 Flash, and Qwen3 Coder. GPT and Sonnet each process all 42 roots. Safety restored describes the current selection, not safety throughout its history.</figcaption>
       </figure>
     </section>
     <section class="result" aria-labelledby="safety-and-utility">
@@ -109,13 +104,13 @@
         <p>Across <strong>288 matched blocks and 12 generations</strong>, full validation and validated rollback each finish with fully correct programs while retaining <strong>over 43% mean deployment service-cost savings</strong>. Founders already complete permitted tasks correctly. The useful improvement is lower service cost, and savings exclude validation expenditure.</p>
       </div>
       <figure>
-        <a href="assets/figures/safety-and-utility.png" aria-label="Open full-resolution figure 5"><img src="assets/figures/safety-and-utility.png" width="7680" height="2673" alt="Consent safety across generations and deployment savings versus full correctness." loading="lazy" decoding="async"></a>
-        <figcaption>Figure 5. Left: 72 consent lineages. Right: mean results across 288 blocks. E/M denote efficiency/maintenance objectives, and I/F denote inherited/founder editing. Safety requires no unauthorized effects. Full correctness also requires completing permitted work. <a class="resolution" href="assets/figures/safety-and-utility.png">8K PNG</a></figcaption>
+        <img src="assets/figures/safety-and-utility.png" width="3840" height="1336" alt="Consent safety across generations and deployment savings versus full correctness." loading="lazy" decoding="async">
+        <figcaption>Figure 5. Left: 72 consent lineages. Right: mean results across 288 blocks. E/M denote efficiency/maintenance objectives, and I/F denote inherited/founder editing. Safety requires no unauthorized effects. Full correctness also requires completing permitted work.</figcaption>
       </figure>
     </section>
     <section class="result copy" aria-labelledby="testbed">
-      <h2 id="testbed">Testbed</h2>
-      <p>Each instance is an ordered event stream that combines protected requests with changes in authorization or environment state.</p>
+      <h2 id="testbed">Our testbed</h2>
+      <p>We construct four stateful authorization tasks. Each instance is an ordered event stream that combines protected requests with changes in authorization or environment state.</p>
       <div class="table-scroll">
         <table>
           <thead><tr><th scope="col">Task family</th><th scope="col">Safety requirement</th></tr></thead>
