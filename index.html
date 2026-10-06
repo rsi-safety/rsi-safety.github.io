@@ -3,45 +3,141 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Safety Must Survive Self-Improvement: Why Failures Persist and How Agents Recover</title>
-  <meta name="description" content="Safety Must Survive Self-Improvement: Why Failures Persist and How Agents Recover. Read the paper on arXiv. Code and data will be released soon.">
+  <title>RSI Safety | Safety Must Survive Self-Improvement</title>
+  <meta name="description" content="Safety Must Survive Self-Improvement: Why Failures Persist and How Agents Recover. Explore the paper, results, and figures.">
   <style>
     :root { --fg: #111827; --muted: #6b7280; --line: #e5e7eb; --bg: #ffffff; --accent: #111827; }
     @media (prefers-color-scheme: dark) { :root { --fg: #f3f4f6; --muted: #9ca3af; --line: #374151; --bg: #0b0f17; --accent: #f3f4f6; } }
     * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-           background: var(--bg); color: var(--fg); padding: 32px 16px;
+    body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); padding: 24px 16px 48px;
            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-    main { max-width: 720px; text-align: center; }
+    .site-header { max-width: 960px; margin: 0 auto 48px; text-align: left; }
+    .brand { color: var(--fg); font-size: 1.1rem; font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
+    main { max-width: 960px; margin: 0 auto; }
+    .hero { max-width: 720px; margin: 0 auto 64px; text-align: center; }
     h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
-    h2 { font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 500; margin: 0 0 24px; color: var(--muted); line-height: 1.4; }
-    .authors { font-size: 1.05rem; line-height: 1.7; margin: 0 0 32px; }
-    .affil { font-size: 0.95rem; color: var(--muted); line-height: 1.6; margin: 0 0 4px; }
-    .note { font-size: 0.85rem; color: var(--muted); margin: 0 0 32px; }
+    .subtitle { font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 500; margin: 0 0 24px; color: var(--muted); line-height: 1.4; }
+    .authors { font-size: 1.05rem; line-height: 1.9; margin: 0 0 16px; }
+    .affil { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin: 0 0 8px; }
+    .note { font-size: 0.85rem; color: var(--muted); margin: 0 0 28px; }
     sup { font-size: 0.7em; }
-    .status { display: inline-flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 32px; }
-    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 0.95rem; }
     .links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    a { color: inherit; text-underline-offset: 3px; }
     a.button { display: inline-block; border: 1px solid var(--accent); color: var(--fg); text-decoration: none;
                border-radius: 8px; padding: 10px 18px; font-weight: 500; }
     a.button:hover { background: var(--accent); color: var(--bg); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .result { margin: 0 0 56px; }
+    .copy { max-width: 720px; margin: 0 auto; }
+    .copy h2 { font-size: 1.4rem; line-height: 1.35; margin: 0 0 16px; letter-spacing: -0.015em; }
+    .copy p { line-height: 1.75; margin: 0 0 22px; }
+    figure { margin: 24px 0 0; }
+    figure a { display: block; }
+    figure img { display: block; width: 100%; height: auto; background: #fff; }
+    figcaption { max-width: 720px; margin: 14px auto 0; font-size: .9rem; line-height: 1.65; color: var(--muted); }
+    .resolution { display: inline !important; white-space: nowrap; }
+    .table-scroll { overflow-x: auto; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; line-height: 1.6; }
+    th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th:first-child, td:first-child { min-width: 150px; }
+    pre { border: 1px solid var(--line); border-radius: 8px; padding: 20px; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .85rem; line-height: 1.65; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    @media (max-width: 600px) { .site-header { margin-bottom: 32px; } .hero { margin-bottom: 48px; } .result { margin-bottom: 40px; } .authors br, .affil br { display: none; } }
   </style>
 </head>
-<body>
+<body id="top">
+  <header class="site-header"><a class="brand" href="#top">RSI Safety</a></header>
   <main>
-    <h1>Safety Must Survive Self-Improvement</h1>
-    <h2>Why Failures Persist and How Agents Recover</h2>
-    <p class="authors">Yunbei Zhang, Janet Wang, Saiyue Lyu, Yingqiang Ge, Kaiqu Liang, Zijian Jin, Chandan K. Reddy, Jihun Hamm</p>
-    <div class="status">
-      <span class="pill">Code: coming soon</span>
-      <span class="pill">Data: coming soon</span>
-      <span class="pill">Paper: available on arXiv</span>
-    </div>
-    <div class="links">
-      <a class="button" href="https://arxiv.org/pdf/2610.01073">Paper (PDF)</a>
-      <a class="button" href="https://arxiv.org/abs/2610.01073">arXiv</a>
-      <a class="button" href="https://github.com/rsi-safety/RSI-Safety">GitHub</a>
-    </div>
+    <section class="hero" aria-labelledby="paper-title">
+      <h1 id="paper-title">Safety Must Survive Self-Improvement</h1>
+      <h2 class="subtitle">Why Failures Persist and How Agents Recover</h2>
+      <p class="authors">Yunbei Zhang<sup>1,†</sup>, Janet Wang<sup>1,†</sup>, Saiyue Lyu<sup>2</sup>, Yingqiang Ge<sup>3</sup>,<br>
+        Kaiqu Liang<sup>4</sup>, Zijian Jin<sup>5</sup>, Chandan K. Reddy<sup>6</sup>, Jihun Hamm<sup>1</sup></p>
+      <p class="affil"><sup>1</sup>Tulane University &nbsp; <sup>2</sup>University of British Columbia<br>
+        <sup>3</sup>Rutgers University &nbsp; <sup>4</sup>Princeton University<br>
+        <sup>5</sup>New York University &nbsp; <sup>6</sup>Virginia Tech</p>
+      <p class="note">† Equal contribution</p>
+      <nav class="links" aria-label="Paper resources">
+        <a class="button" href="https://arxiv.org/pdf/2610.01073">Paper</a>
+        <a class="button" href="https://arxiv.org/abs/2610.01073">arXiv</a>
+        <a class="button" href="https://github.com/rsi-safety/RSI-Safety">GitHub</a>
+      </nav>
+    </section>
+    <section class="result" aria-labelledby="overview">
+      <div class="copy">
+        <h2 id="overview">Safety across generations</h2>
+        <p>Recursive self-improvement lets agents carry useful changes across generations. We study why unsafe behavior persists and how agents recover, using fixed LLM editors and four stateful authorization tasks. Paired experiments separate what passes validation, what runs next, and what supplies the next edit.</p>
+      </div>
+      <figure>
+        <a href="assets/figures/overview.png" aria-label="Open full-resolution figure 1"><img src="assets/figures/overview.png" width="7680" height="4438" alt="Failure entry, persistence through selection, and the separate roles of deployment validation and editing source." loading="eager" decoding="async"></a>
+        <figcaption>Figure 1. Detecting a failure, producing a repair, and ending unsafe execution are different outcomes. Red denotes the current program, blue the founder, and green a currently passing fallback. <a class="resolution" href="assets/figures/overview.png">8K PNG</a></figcaption>
+      </figure>
+    </section>
+    <section class="result" aria-labelledby="authorization-and-selection">
+      <div class="copy">
+        <h2 id="authorization-and-selection">Historical scores can preserve a failure</h2>
+        <p>Historical readout retains the same unsafe programs in <strong>22 of 48 framework histories through iteration 100</strong>, despite a correct alternative in every affected archive. Current readout restores full correctness on the original suite. Score refresh also improves matched continuations, while independent tests expose residual failures.</p>
+      </div>
+      <figure>
+        <a href="assets/figures/authorization-and-selection.png" aria-label="Open full-resolution figure 2"><img src="assets/figures/authorization-and-selection.png" width="7680" height="4461" alt="Authorization-change trajectories and framework readouts under historical evaluations, current checks, and score refresh." loading="lazy" decoding="async"></a>
+        <figcaption>Figure 2. Top: 72 authorization-change histories. Bottom: 48 framework histories. Readouts select from the same archives. Score refresh continues to iteration 60, while readouts continue to 100. <a class="resolution" href="assets/figures/authorization-and-selection.png">8K PNG</a></figcaption>
+      </figure>
+    </section>
+    <section class="result" aria-labelledby="retention-after-rejection">
+      <div class="copy">
+        <h2 id="retention-after-rejection">Rejection does not end unsafe execution</h2>
+        <p>When the incumbent and both proposals fail the same tests, <strong>keep retains the failed program</strong>, while founder fallback restores safety. Holding all proposals and outcomes fixed isolates the retention rule. A separate analysis of 432 frozen pools shows that the gap remains even at full validation coverage.</p>
+      </div>
+      <figure>
+        <a href="assets/figures/retention-after-rejection.png" aria-label="Open full-resolution figure 3"><img src="assets/figures/retention-after-rejection.png" width="7680" height="2184" alt="Frozen candidate pools and identical rejected proposals reveal the difference between keep and founder fallback." loading="lazy" decoding="async"></a>
+        <figcaption>Figure 3. Each editor processes 42 failed roots. The table shows only all-rejected cases. The authorization contract is unchanged, and unknown outcomes do not count as safe. <a class="resolution" href="assets/figures/retention-after-rejection.png">8K PNG</a></figcaption>
+      </figure>
+    </section>
+    <section class="result" aria-labelledby="recovery">
+      <div class="copy">
+        <h2 id="recovery">Editing source changes recovery</h2>
+        <p>From the <strong>same 42 failed programs</strong>, editing the current program restores safety in <strong>66.7%</strong> of roots after six generations, compared with <strong>97.6%</strong> when editing the founder. The advantage varies across editors. Founder editing changes the source of proposals without automatically deploying the founder.</p>
+      </div>
+      <figure>
+        <a href="assets/figures/recovery.png" aria-label="Open full-resolution figure 4"><img src="assets/figures/recovery.png" width="7680" height="4329" alt="Recovery by original editor and feedback condition, with GPT and Sonnet trajectories from the same failed roots." loading="lazy" decoding="async"></a>
+        <figcaption>Figure 4. Original editors: Devstral 2, GLM 4.7 Flash, and Qwen3 Coder. GPT and Sonnet each process all 42 roots. Safety restored describes the current selection, not safety throughout its history. <a class="resolution" href="assets/figures/recovery.png">8K PNG</a></figcaption>
+      </figure>
+    </section>
+    <section class="result" aria-labelledby="safety-and-utility">
+      <div class="copy">
+        <h2 id="safety-and-utility">Safety can coexist with useful optimization</h2>
+        <p>Across <strong>288 matched blocks and 12 generations</strong>, full validation and validated rollback each finish with fully correct programs while retaining <strong>over 43% mean deployment service-cost savings</strong>. Founders already complete permitted tasks correctly. The useful improvement is lower service cost, and savings exclude validation expenditure.</p>
+      </div>
+      <figure>
+        <a href="assets/figures/safety-and-utility.png" aria-label="Open full-resolution figure 5"><img src="assets/figures/safety-and-utility.png" width="7680" height="2673" alt="Consent safety across generations and deployment savings versus full correctness." loading="lazy" decoding="async"></a>
+        <figcaption>Figure 5. Left: 72 consent lineages. Right: mean results across 288 blocks. E/M denote efficiency/maintenance objectives, and I/F denote inherited/founder editing. Safety requires no unauthorized effects. Full correctness also requires completing permitted work. <a class="resolution" href="assets/figures/safety-and-utility.png">8K PNG</a></figcaption>
+      </figure>
+    </section>
+    <section class="result copy" aria-labelledby="testbed">
+      <h2 id="testbed">Testbed</h2>
+      <p>Each instance is an ordered event stream that combines protected requests with changes in authorization or environment state.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Task family</th><th scope="col">Safety requirement</th></tr></thead>
+          <tbody>
+            <tr><td>Session authorization</td><td>Permission remains current for the requested session and resource.</td></tr>
+            <tr><td>Filesystem containment</td><td>The resolved write target stays within the authorized root.</td></tr>
+            <tr><td>Tool approval</td><td>Approval covers the action, scope, uses, and expiration.</td></tr>
+            <tr><td>User consent</td><td>Agreement remains applicable to the requested action.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Each core block has 24 public, 24 audit, and 24 hidden streams: <strong>20,736 stream assignments across 288 blocks</strong>. These are reused assignments, not unique authorization problems. Independent effect traces distinguish unauthorized actions from completion of permitted work.</p>
+    </section>
+    <section class="copy" aria-labelledby="citation">
+      <h2 id="citation">Citation</h2>
+      <pre><code>@article{zhang2026safety,
+  title={Safety Must Survive Self-Improvement: Why Failures Persist and How Agents Recover},
+  author={Zhang, Yunbei and Wang, Janet and Lyu, Saiyue and Ge, Yingqiang and Liang, Kaiqu and Jin, Zijian and Reddy, Chandan K and Hamm, Jihun},
+  journal={arXiv preprint arXiv:2610.01073},
+  year={2026}
+}</code></pre>
+    </section>
   </main>
 </body>
 </html>
